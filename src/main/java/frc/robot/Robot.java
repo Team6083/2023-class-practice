@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.system.NewAutoEngine;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,17 +19,29 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+
+  // Define joystick, motor controller
+  public static XboxController maincontrol;
+  public static XboxController vicecontrol;
   @Override
-  public void robotInit() {}
+  public void robotInit() {
+    maincontrol = new XboxController(0);
+    vicecontrol = new XboxController(1);
+    NewAutoEngine.init();// call the function init which you write in NewAutoEngine.
+  }
 
   @Override
   public void robotPeriodic() {}
 
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+    NewAutoEngine.start(); // call the function start which you write in NewAutoEngine.
+  }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    NewAutoEngine.loop();// call the function loop which you write in NewAutoEngine.
+  }
 
   @Override
   public void teleopInit() {}
